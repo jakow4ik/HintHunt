@@ -1,17 +1,28 @@
 package com.wuruw.hinthunt
 
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.wuruw.hinthunt.ui.creategame.CreateGameScreen
 import com.wuruw.hinthunt.ui.mainmenu.MainMenuScreen
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
 fun App() {
-    MaterialTheme {
-        MainMenuScreen(
-            onCreateGameClick = { /* Navigate to Create screen */ },
-            onJoinGameClick = { /* Navigate to Join screen */ },
-        )
+    val navController = rememberNavController()
+
+    NavHost(navController, startDestination = "mainMenu") {
+        composable("mainMenu") {
+            MainMenuScreen(
+                onCreateGameClick = { navController.navigate("createGame") },
+                onJoinGameClick = { /* Navigate to Join screen */ },
+            )
+        }
+
+        composable("createGame") {
+            CreateGameScreen()
+        }
     }
 }

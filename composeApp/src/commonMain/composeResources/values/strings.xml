@@ -1,0 +1,7 @@
+<resources>
+    <string name="main_menu_title">It’s time to win,\nmy friend!</string>
+    <string name="main_menu_create_game_title">Create a Game</string>
+    <string name="main_menu_create_game_description">Conjure a game room. Hand-pick the decks. Lure your friends into your twisted imagination.</string>
+    <string name="main_menu_join_game_title">Join the Game</string>
+    <string name="main_menu_join_game_description">Got a secret code? Sneak in, grab a seat, and join the Hint Hunt before it’s too late.</string>
+</resources>

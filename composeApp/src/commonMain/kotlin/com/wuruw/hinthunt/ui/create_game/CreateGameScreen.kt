@@ -1,17 +1,21 @@
-package com.wuruw.hinthunt.ui.creategame
+package com.wuruw.hinthunt.ui.create_game
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.wuruw.hinthunt.navigation.Screen
 
 @Composable
-fun CreateGameScreen() {
+fun CreateGameScreen(
+    backStack: SnapshotStateList<Screen>
+) {
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -21,7 +25,7 @@ fun CreateGameScreen() {
                 shape = RoundedCornerShape(12.dp)
             )
             .clip(RoundedCornerShape(12.dp)),
-        color = Color(0xFFD6FCEB),
+        color = Color(0xFFE5D8FF),
         shadowElevation = 2.dp
     ) {
 

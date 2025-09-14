@@ -1,4 +1,4 @@
-package com.wuruw.hinthunt.ui.mainmenu
+package com.wuruw.hinthunt.ui.main_menu
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable

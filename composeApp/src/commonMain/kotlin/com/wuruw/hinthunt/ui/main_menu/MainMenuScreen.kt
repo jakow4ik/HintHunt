@@ -1,4 +1,4 @@
-package com.wuruw.hinthunt.ui.mainmenu
+package com.wuruw.hinthunt.ui.main_menu
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -11,10 +11,12 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.wuruw.hinthunt.navigation.Screen
 import hinthunt.composeapp.generated.resources.Res
 import hinthunt.composeapp.generated.resources.main_menu_create_game_description
 import hinthunt.composeapp.generated.resources.main_menu_create_game_title
@@ -25,8 +27,7 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun MainMenuScreen(
-    onCreateGameClick: () -> Unit,
-    onJoinGameClick: () -> Unit,
+    backStack: SnapshotStateList<Screen>
 ) {
     Column(
         modifier = Modifier
@@ -51,7 +52,9 @@ fun MainMenuScreen(
             title = stringResource(Res.string.main_menu_create_game_title),
             description = stringResource(Res.string.main_menu_create_game_description),
             backgroundColor = Color(0xFFE5D8FF),
-            onClick = onCreateGameClick
+            onClick = {
+                backStack.add(Screen.CreateGame)
+            }
         )
 
         Spacer(Modifier.height(16.dp))
@@ -60,7 +63,9 @@ fun MainMenuScreen(
             title = stringResource(Res.string.main_menu_join_game_title),
             description = stringResource(Res.string.main_menu_join_game_description),
             backgroundColor = Color(0xFFD6FCEB),
-            onClick = onJoinGameClick
+            onClick = {
+                backStack.add(Screen.JoinGame)
+            }
         )
 
         Spacer(Modifier.height(32.dp))

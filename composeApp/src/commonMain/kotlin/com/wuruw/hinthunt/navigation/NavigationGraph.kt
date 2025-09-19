@@ -18,8 +18,8 @@ fun NavigationGraph() {
         onBack = { backStack.removeLastOrNull() },
         entryProvider = entryProvider {
             entry<Screen.MainMenu> { MainMenuScreen(backStack) }
-            entry<Screen.CreateGame> { CreateGameScreen(backStack) }
-            entry(Screen.JoinGame) { JoinGameScreen(backStack) }
+            entry<Screen.CreateGame> { CreateGameScreen() }
+            entry(Screen.JoinGame) { JoinGameScreen() }
         }
     )
 }

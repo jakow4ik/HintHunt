@@ -8,8 +8,6 @@ import io.ktor.network.sockets.Socket
 import io.ktor.network.sockets.aSocket
 import io.ktor.network.sockets.openReadChannel
 import io.ktor.network.sockets.openWriteChannel
-import io.ktor.utils.io.readUTF8Line
-import io.ktor.utils.io.writeStringUtf8
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -45,11 +43,10 @@ class TcpNetworkServer(
                     val output = socket.openWriteChannel(autoFlush = true)
                     try {
                         while (true) {
-                            val line = input.readUTF8Line() ?: break
-                            val msg = GameMessage.Ping
+                            val msg = input.receiveMessage()
+                            println("New msg from client:\n $msg")
                             _messages.emit(msg)
-
-                            output.writeStringUtf8("Echo: $line\n")
+                            output.sendMessage(GameMessage.HandshakeAck(true, ""))
                         }
                     } catch (e: Exception) {
                         println("❌ Client error:\n ${e.message}")
@@ -71,10 +68,9 @@ class TcpNetworkServer(
     }
 
     override suspend fun broadcast(message: GameMessage) {
-        val text = message.toString() + "\n"
         clients.forEach { client ->
             try {
-                client.openWriteChannel(autoFlush = true).writeStringUtf8(text)
+                client.openWriteChannel(autoFlush = true).sendMessage(message)
             } catch (_: Exception) {
             }
         }

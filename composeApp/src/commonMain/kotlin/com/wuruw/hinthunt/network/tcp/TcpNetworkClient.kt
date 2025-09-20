@@ -7,8 +7,6 @@ import io.ktor.network.sockets.Socket
 import io.ktor.network.sockets.aSocket
 import io.ktor.network.sockets.openReadChannel
 import io.ktor.network.sockets.openWriteChannel
-import io.ktor.utils.io.readUTF8Line
-import io.ktor.utils.io.writeStringUtf8
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -39,9 +37,10 @@ class TcpNetworkClient(
 
             launch {
                 try {
+                    output.sendMessage(GameMessage.Handshake("1", "1"))
                     while (true) {
-                        val line = input.readUTF8Line() ?: break
-                        val msg = GameMessage.Ping
+                        val msg = input.receiveMessage()
+                        println("New msg from server: $msg")
                         _messages.emit(msg)
                     }
                 } catch (e: Exception) {
@@ -50,14 +49,6 @@ class TcpNetworkClient(
                     disconnect()
                 }
             }
-
-            // launch {
-            //     repeat(3) { i ->
-            //         val msg = GameMessage.Text("Hello $i")
-            //         send(msg)
-            //         delay(1000)
-            //     }
-            // }
         }
     }
 
@@ -73,8 +64,7 @@ class TcpNetworkClient(
     override fun receive(): Flow<GameMessage> = _messages
 
     override suspend fun send(message: GameMessage) {
-        val text = message.toString() + "\n"
-        socket?.openWriteChannel(autoFlush = true)?.writeStringUtf8(text)
+        socket?.openWriteChannel(autoFlush = true)?.sendMessage(message)
             ?: throw IllegalStateException("Not connected to the server\n")
     }
 }

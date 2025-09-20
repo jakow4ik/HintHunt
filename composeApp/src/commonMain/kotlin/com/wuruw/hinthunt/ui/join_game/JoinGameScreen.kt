@@ -9,7 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.wuruw.hinthunt.game.GameClient
+import com.wuruw.hinthunt.network.core.NetworkClient
+import com.wuruw.hinthunt.network.tcp.TcpNetworkClient
 
 @Composable
 fun JoinGameScreen() {
@@ -25,6 +26,6 @@ fun JoinGameScreen() {
         color = Color(0xFFD6FCEB),
         shadowElevation = 2.dp
     ) {
-        GameClient().connect()
+        val networkClient: NetworkClient = TcpNetworkClient()
     }
 }

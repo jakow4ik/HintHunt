@@ -5,17 +5,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.wuruw.hinthunt.navigation.Screen
+import com.wuruw.hinthunt.network.core.NetworkClient
+import com.wuruw.hinthunt.network.tcp.TcpNetworkClient
 
 @Composable
-fun JoinGameScreen(
-    backStack: SnapshotStateList<Screen>
-) {
+fun JoinGameScreen() {
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -28,6 +26,6 @@ fun JoinGameScreen(
         color = Color(0xFFD6FCEB),
         shadowElevation = 2.dp
     ) {
-
+        val networkClient: NetworkClient = TcpNetworkClient()
     }
 }

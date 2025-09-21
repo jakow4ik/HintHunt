@@ -10,7 +10,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.wuruw.hinthunt.network.core.NetworkServer
-import com.wuruw.hinthunt.network.tcp.TcpNetworkServer
+import org.koin.compose.koinInject
 
 @Composable
 fun CreateGameScreen() {
@@ -26,7 +26,7 @@ fun CreateGameScreen() {
         color = Color(0xFFE5D8FF),
         shadowElevation = 2.dp
     ) {
-        val networkServer: NetworkServer = TcpNetworkServer()
+        val networkServer: NetworkServer = koinInject()
         networkServer.start()
     }
 }

@@ -16,6 +16,7 @@ kotlin = "2.2.20"
 navigation3 = "1.0.0-alpha01"
 ktor = "3.3.0"
 kotlinx-serialization = "1.9.0"
+koin = "4.1.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -34,6 +35,8 @@ kotlinx-serialization-protobuf = { group = "org.jetbrains.kotlinx", name = "kotl
 ktor-network = { group = "io.ktor", name = "ktor-network", version.ref = "ktor" }
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
+koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
+koin-compose = { group = "io.insert-koin", name = "koin-compose", version.ref = "koin" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

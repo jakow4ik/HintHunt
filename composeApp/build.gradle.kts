@@ -48,6 +48,8 @@ kotlin {
             implementation(libs.kotlinx.serialization.protobuf)
             implementation(libs.ktor.network)
             implementation(libs.ktor.client.core)
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

@@ -10,7 +10,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.wuruw.hinthunt.network.core.NetworkClient
-import com.wuruw.hinthunt.network.tcp.TcpNetworkClient
+import org.koin.compose.koinInject
 
 @Composable
 fun JoinGameScreen() {
@@ -26,6 +26,6 @@ fun JoinGameScreen() {
         color = Color(0xFFD6FCEB),
         shadowElevation = 2.dp
     ) {
-        val networkClient: NetworkClient = TcpNetworkClient()
+        val networkClient: NetworkClient = koinInject()
     }
 }
